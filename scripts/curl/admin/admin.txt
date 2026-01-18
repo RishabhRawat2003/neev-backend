@@ -1,0 +1,57 @@
+CREATE
+
+curl --location '{{dev}}/api/v1/admin/new' \
+--header 'Content-Type: application/json' \
+--header 'Authorization: Bearer <token>' \
+--data-raw '{
+    "admin": {
+        "name": "Admin User",
+        "email": "admin@example.com",
+        "password": "<hashed_password>",
+        "role": "Admin",
+        "isActive": true,
+        "is_deleted": false,
+        "created_at": "2025-07-07T00:00:00.000Z",
+        "updated_at": "2025-07-07T00:00:00.000Z"
+    }
+}'
+
+LIST
+
+curl --location '{{dev}}/api/v1/admin/list' \
+--header 'Content-Type: application/json' \
+--header 'Authorization: Bearer <token>' \
+--data '{
+    "pageNum": 1,
+    "pageSize": 20,
+    "filters": {
+        "email": "admin@example.com"
+    }
+}'
+
+GET
+
+curl --location '{{dev}}/api/v1/admin/:admin_id' \
+--header 'Authorization: Bearer <token>'
+
+UPDATE
+
+curl --location '{{dev}}/api/v1/admin/:admin_id/update' \
+--header 'Content-Type: application/json' \
+--header 'Authorization: Bearer <token>' \
+--data '{
+    "admin": {
+        "name": "Updated Admin",
+        "email": "updatedadmin@example.com",
+        "role": "SUPERADMIN",
+        "isActive": false,
+        "is_deleted": false,
+        "updated_at": "2025-07-07T00:00:00.000Z"
+    }
+}'
+
+DELETE
+
+curl --location --request POST '{{dev}}/api/v1/admin/:admin_id/remove' \
+--header 'Authorization: Bearer <token>'
+
