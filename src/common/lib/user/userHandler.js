@@ -46,7 +46,17 @@ export async function signinUserHandler(input) {
 
 
 export async function getUserDetailsHandler(input) {
-    return await userHelper.getObjectById(input);
+    const data = await userHelper.getObjectById(input);
+
+    return {
+        id: data._id,
+        firstName: data.firstName,
+        lastName: data.lastName,
+        email: data.email,
+        phoneNum: data.phoneNum,
+        companyName: data.companyName,
+        createdAt: data.created_at
+    }
 }
 
 export async function updateUserDetailsHandler(input) {
