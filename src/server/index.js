@@ -9,6 +9,7 @@ import serverConfig from "../server/config";
 import mainRoutes from "../server/routes/main.routes";
 import userRoutes from "../server/routes/user.routes";
 import otpRoutes from "../server/routes/otp.routes";
+import adminRoutes from "../server/routes/admin.routes";
 
 
 const app = new Express();
@@ -85,6 +86,8 @@ app.use((req, res, next) => {
 app.use("/", mainRoutes);
 app.use("/api/v1/user", userRoutes)
 app.use("/api/v1/otp", otpRoutes)
+app.use("/api/v1/admin", adminRoutes)
+
 
 // Start server ONLY after database connection is established
 connectDB().then(() => {
