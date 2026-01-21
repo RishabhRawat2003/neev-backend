@@ -47,6 +47,7 @@ const dbOptions = {
 async function connectDB() {
   try {
     await mongoose.connect(serverConfig.mongoURL, dbOptions);
+    console.log("Connected to MongoDB");
   } catch (error) {
     process.exit(1); // Exit if can't connect to database
   }
@@ -93,13 +94,13 @@ app.use("/api/v1/admin", adminRoutes)
 connectDB().then(() => {
   http.listen(serverConfig.PORT, (error) => {
     if (error) {
-      console.error('❌ Failed to start server:', error);
+      console.error('Failed to start server:', error);
       process.exit(1);
     }
-    console.log(`🌐 Core API is running on port: ${serverConfig.PORT}`);
+    console.log(`Core API is running on port: ${serverConfig.PORT}`);
   });
 }).catch((error) => {
-  console.error('💥 Startup failed:', error);
+  console.error('Startup failed:', error);
   process.exit(1);
 });
 
