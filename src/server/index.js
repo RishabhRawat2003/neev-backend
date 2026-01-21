@@ -48,6 +48,7 @@ async function connectDB() {
   try {
     await mongoose.connect(serverConfig.mongoURL, dbOptions);
     console.log("Connected to MongoDB");
+    
   } catch (error) {
     process.exit(1); // Exit if can't connect to database
   }
