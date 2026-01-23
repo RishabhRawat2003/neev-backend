@@ -7,8 +7,8 @@ const configVariables = {
   JWT_SECRET: "neev1234567890",
   EMAIL_USER: process.env.EMAIL_USER || "neevglobalsolutions@gmail.com",
   EMAIL_PASS: process.env.EMAIL_PASS || "aukkqawlvxnngmrr",
-  // for prod
-  // RAZORPAY_KEY_ID: process.env.RAZORPAY_KEY_ID || "rzp_test_RTQXhKmDvfL3Z4", // for testing
-  // RAZORPAY_KEY_SECRET: process.env.RAZORPAY_KEY_SECRET || "gkmHPKhW75FOzu3bIXolWaox", // for testing
+  CLOUDINARY_CLOUD_NAME: process.env.CLOUDINARY_CLOUD_NAME || "dvmm4ldjc",
+  CLOUDINARY_API_KEY: process.env.CLOUDINARY_API_KEY || "264649746887875",
+  CLOUDINARY_API_SECRET: process.env.CLOUDINARY_API_SECRET || "-5HXfhBl5FuAkof3dvBO0PEtQV0",
 };
 export default configVariables;

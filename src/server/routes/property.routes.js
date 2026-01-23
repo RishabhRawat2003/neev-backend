@@ -1,6 +1,6 @@
 
 import _ from 'lodash';
-import {Router} from 'express';
+import { Router } from 'express';
 
 import {
     addNewPropertyHandler,
@@ -11,53 +11,61 @@ import {
 } from '../../common/lib/property/propertyHandler';
 import responseStatus from "../../common/constants/responseStatus.json";
 import responseData from "../../common/constants/responseData.json";
+import protectRoutes from '../../common/util/protectRoutes';
+import { upload } from '../../common/util/multer';
 
 const router = new Router();
 
 router.route('/list').post(async (req, res) => {
     try {
-      let filter = {};
-      filter.query = {};
-  
-      const inputData = { ...req.body };
-      if (inputData) {
-        filter.pageNum = inputData.pageNum ? inputData.pageNum : 1;
-        filter.pageSize = inputData.pageSize ? inputData.pageSize : 50;
-  
-        if (inputData.filters) {
-          filter.query = inputData.filters;
+        let filter = {};
+        filter.query = {};
+
+        const inputData = { ...req.body };
+        if (inputData) {
+            filter.pageNum = inputData.pageNum ? inputData.pageNum : 1;
+            filter.pageSize = inputData.pageSize ? inputData.pageSize : 50;
+
+            if (inputData.filters) {
+                filter.query = inputData.filters;
+            }
+        } else {
+            filter.pageNum = 1;
+            filter.pageSize = 50;
         }
-      } else {
-        filter.pageNum = 1;
-        filter.pageSize = 50;
-      }
-  
-      filter.query = { ...filter.query };
-  
-      const outputResult = await getPropertyListHandler(filter);
-      res.status(responseStatus.STATUS_SUCCESS_OK);
-      res.send({
-        status: responseData.SUCCESS,
-        data: {
-          propertyList: outputResult.list ? outputResult.list : [],
-          propertyCount: outputResult.count ? outputResult.count : 0,
-        },
-      });
+
+        filter.query = { ...filter.query };
+
+        const outputResult = await getPropertyListHandler(filter);
+        res.status(responseStatus.STATUS_SUCCESS_OK);
+        res.send({
+            status: responseData.SUCCESS,
+            data: {
+                propertyList: outputResult.list ? outputResult.list : [],
+                propertyCount: outputResult.count ? outputResult.count : 0,
+            },
+        });
     } catch (err) {
-      console.log(err);
-      res.status(responseStatus.INTERNAL_SERVER_ERROR);
-      res.send({
-        status: responseData.ERROR,
-        data: { message: err },
-      });
+        console.log(err);
+        res.status(responseStatus.INTERNAL_SERVER_ERROR);
+        res.send({
+            status: responseData.ERROR,
+            data: { message: err },
+        });
     }
-  });
+});
 
 
-router.route('/new').post(async (req, res) => {
+router.route('/new').post(protectRoutes.verifyAdmin, upload.fields([{ name: 'images', maxCount: 6 }]), async (req, res) => {
     try {
-       if (!_.isEmpty(req.body)) {
-            const outputResult = await addNewPropertyHandler(req.body.property);
+        if (!_.isEmpty(req.body)) {
+            let data = {
+                ...req.body
+            }
+            if (req.files) {
+                data.images = req.files.images
+            }
+            const outputResult = await addNewPropertyHandler(data);
             res.status(responseStatus.STATUS_SUCCESS_OK);
             res.send({
                 status: responseData.SUCCESS,
@@ -102,21 +110,30 @@ router.route('/:id').get(async (req, res) => {
     }
 });
 
-router.route('/:id/update').post( async (req, res) => {
+router.route('/:id/update').post(protectRoutes.verifyAdmin, upload.fields([{ name: 'images', maxCount: 6 }]), async (req, res) => {
     try {
-        if (!_.isEmpty(req.params.id) && !_.isEmpty(req.body) && !_.isEmpty(req.body.property)) {
+        if (!_.isEmpty(req.params.id) && !_.isEmpty(req.body)) {
+
+            let data = {
+                ...req.body
+            }
+            
+            if (req.files.images) {
+                data.images = req.files.images
+            }
+
             let input = {
                 objectId: req.params.id,
-                updateObject: req.body.property
+                updateObject: data
             }
             const updateObjectResult = await updatePropertyDetailsHandler(input);
             res.status(responseStatus.STATUS_SUCCESS_OK);
-                res.send({
-                    status: responseData.SUCCESS,
-                    data: {
-                        property: updateObjectResult ? updateObjectResult : {}
-                    }
-                });
+            res.send({
+                status: responseData.SUCCESS,
+                data: {
+                    property: updateObjectResult ? updateObjectResult : {}
+                }
+            });
         } else {
             throw 'no body or id param sent'
         }
@@ -130,7 +147,7 @@ router.route('/:id/update').post( async (req, res) => {
     }
 });
 
-router.route('/:id/remove').post(async(req, res) => {
+router.route('/:id/remove').post(protectRoutes.verifyAdmin, async (req, res) => {
     try {
         if (req.params.id) {
             const deletedProperty = await deletePropertyHandler(req.params.id);
@@ -155,4 +172,4 @@ router.route('/:id/remove').post(async(req, res) => {
 });
 
 export default router;
-  
+

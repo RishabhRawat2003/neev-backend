@@ -10,6 +10,7 @@ import mainRoutes from "../server/routes/main.routes";
 import userRoutes from "../server/routes/user.routes";
 import otpRoutes from "../server/routes/otp.routes";
 import adminRoutes from "../server/routes/admin.routes";
+import propertyRoutes from "../server/routes/property.routes";
 
 
 const app = new Express();
@@ -48,7 +49,7 @@ async function connectDB() {
   try {
     await mongoose.connect(serverConfig.mongoURL, dbOptions);
     console.log("Connected to MongoDB");
-    
+
   } catch (error) {
     process.exit(1); // Exit if can't connect to database
   }
@@ -89,6 +90,7 @@ app.use("/", mainRoutes);
 app.use("/api/v1/user", userRoutes)
 app.use("/api/v1/otp", otpRoutes)
 app.use("/api/v1/admin", adminRoutes)
+app.use("/api/v1/property", propertyRoutes)
 
 
 // Start server ONLY after database connection is established

@@ -71,6 +71,18 @@ const propertySchema = new Schema({
         type: String,
         trim: true,
     },
+
+    price: {
+        type: Number,
+        required: true,
+        min: 0
+    },
+
+    images: {
+        type: [String],
+        default: [],
+    },
+    
     is_deleted: {
         type: Boolean,
         default: false
