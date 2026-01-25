@@ -30,7 +30,7 @@ router.route('/list').post(protectRoutes.verifyAdmin, async (req, res) => {
 
             if (inputData.filters) {
                 filter.query = inputData.filters;
-                filter.selectFrom = inputData.selectFrom
+                filter.selectFrom = inputData.selectFrom ? inputData.selectFrom : {};
             }
         } else {
             filter.pageNum = 1;

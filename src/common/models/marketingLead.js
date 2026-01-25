@@ -1,5 +1,6 @@
 
 import mongoose from 'mongoose';
+import { CLOSED, CONTACTED, CONVERTED, PENDING } from '../constants/enum';
 const Schema = mongoose.Schema;
 
 const marketingLeadSchema = new Schema({
@@ -10,7 +11,7 @@ const marketingLeadSchema = new Schema({
     },
 
     phoneNumber: {
-        type: String,
+        type: Number,
         trim: true,
     },
 
@@ -24,6 +25,11 @@ const marketingLeadSchema = new Schema({
         type: mongoose.Schema.Types.ObjectId,
         ref: "Marketing",
         required: true
+    },
+    status: {
+        type: String,
+        enum: [PENDING, CONTACTED, CONVERTED, CLOSED],
+        default: PENDING
     },
     is_deleted: {
         type: Boolean,

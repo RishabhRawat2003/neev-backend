@@ -57,7 +57,7 @@ router.route('/list').post(async (req, res) => {
 router.route('/new').post(async (req, res) => {
     try {
        if (!_.isEmpty(req.body)) {
-            const outputResult = await addNewMarketingLeadHandler(req.body.marketingLead);
+            const outputResult = await addNewMarketingLeadHandler(req.body);
             res.status(responseStatus.STATUS_SUCCESS_OK);
             res.send({
                 status: responseData.SUCCESS,

@@ -26,6 +26,12 @@ router.route('/list').post(async (req, res) => {
   
         if (inputData.filters) {
           filter.query = inputData.filters;
+          filter.populatedQuery = [
+            {
+                path: "usersAssociated",
+                select: "firstName lastName email _id companyName"
+            }
+          ]
         }
       } else {
         filter.pageNum = 1;
@@ -57,7 +63,7 @@ router.route('/list').post(async (req, res) => {
 router.route('/new').post(async (req, res) => {
     try {
        if (!_.isEmpty(req.body)) {
-            const outputResult = await addNewMarketingHandler(req.body.marketing);
+            const outputResult = await addNewMarketingHandler(req.body);
             res.status(responseStatus.STATUS_SUCCESS_OK);
             res.send({
                 status: responseData.SUCCESS,
