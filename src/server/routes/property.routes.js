@@ -63,7 +63,17 @@ router.route('/new').post(protectRoutes.verifyAdmin, upload.fields([{ name: 'ima
                 ...req.body
             }
             if (req.files) {
-                data.images = req.files.images
+                let images = []
+                let video = []
+                req.files.images.map((image) => {
+                    if (image.mimetype === 'image/jpeg' || image.mimetype === 'image/png' || image.mimetype === 'image/jpg') {
+                        images.push(image)
+                    } else {
+                        video.push(image)
+                    }
+                })
+                data.images = images
+                data.videos = video
             }
             const outputResult = await addNewPropertyHandler(data);
             res.status(responseStatus.STATUS_SUCCESS_OK);
@@ -117,9 +127,19 @@ router.route('/:id/update').post(protectRoutes.verifyAdmin, upload.fields([{ nam
             let data = {
                 ...req.body
             }
-            
+
             if (req.files.images) {
-                data.images = req.files.images
+                let images = []
+                let video = []
+                req.files.images.map((image) => {
+                    if (image.mimetype === 'image/jpeg' || image.mimetype === 'image/png' || image.mimetype === 'image/jpg') {
+                        images.push(image)
+                    } else {
+                        video.push(image)
+                    }
+                })
+                data.images = images
+                data.videos = video
             }
 
             let input = {

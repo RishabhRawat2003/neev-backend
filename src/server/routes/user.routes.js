@@ -21,6 +21,7 @@ router.route('/list').post(protectRoutes.verifyAdmin, async (req, res) => {
     try {
         let filter = {};
         filter.query = {};
+        filter.selectFrom = {};
 
         const inputData = { ...req.body };
         if (inputData) {
@@ -29,6 +30,7 @@ router.route('/list').post(protectRoutes.verifyAdmin, async (req, res) => {
 
             if (inputData.filters) {
                 filter.query = inputData.filters;
+                filter.selectFrom = inputData.selectFrom
             }
         } else {
             filter.pageNum = 1;

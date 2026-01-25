@@ -11,6 +11,8 @@ import userRoutes from "../server/routes/user.routes";
 import otpRoutes from "../server/routes/otp.routes";
 import adminRoutes from "../server/routes/admin.routes";
 import propertyRoutes from "../server/routes/property.routes";
+import marketingRoutes from "../server/routes/marketing.routes";
+import marketingLeadRoutes from "../server/routes/marketingLead.routes";
 
 
 const app = new Express();
@@ -91,6 +93,8 @@ app.use("/api/v1/user", userRoutes)
 app.use("/api/v1/otp", otpRoutes)
 app.use("/api/v1/admin", adminRoutes)
 app.use("/api/v1/property", propertyRoutes)
+app.use("/api/v1/marketing", marketingRoutes)
+app.use("/api/v1/marketingLead", marketingLeadRoutes)
 
 
 // Start server ONLY after database connection is established

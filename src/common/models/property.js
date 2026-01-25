@@ -1,5 +1,6 @@
 
 import mongoose from 'mongoose';
+import { EAST, NORTH, SOUTH, WEST } from '../constants/enum';
 const Schema = mongoose.Schema;
 
 const propertySchema = new Schema({
@@ -34,6 +35,17 @@ const propertySchema = new Schema({
     area: {
         type: Number, // in sq ft or sq m
         required: true,
+    },
+
+    builtUpArea: {
+        type: Number,
+        required: true,
+    },
+
+    facing: {
+        type: String,
+        enum: [SOUTH, EAST, NORTH, WEST],
+        trim: true
     },
 
     parking: {
@@ -82,7 +94,12 @@ const propertySchema = new Schema({
         type: [String],
         default: [],
     },
-    
+
+    videos: {
+        type: [String],
+        default: [],
+    },
+
     is_deleted: {
         type: Boolean,
         default: false

@@ -3,16 +3,29 @@ import propertyHelper from '../../helpers/property.helper';
 
 export async function addNewPropertyHandler(input) {
     // Upload all images & wait
-    const images = await Promise.all(
-        input.images.map(async (image) => {
-            const result = await uploadOnCloudinary(image.path);
-            return result.secure_url;
-        })
-    );
+    let images = []
+    let videos = []
+    if (input.images.length > 0) {
+        images = await Promise.all(
+            input.images.map(async (image) => {
+                const result = await uploadOnCloudinary(image.buffer);
+                return result.secure_url;
+            })
+        );
+    }
+    if (input.videos.length > 0) {
+        videos = await Promise.all(
+            input.videos.map(async (video) => {
+                const result = await uploadOnCloudinary(video.buffer);
+                return result.secure_url;
+            })
+        );
+    }
 
     const data = {
         ...input,
         images,
+        videos,
         features: JSON.parse(input.features),
         nearbyFacilities: JSON.parse(input.nearbyFacilities)
     };
@@ -26,6 +39,7 @@ export async function getPropertyDetailsHandler(input) {
 
 export async function updatePropertyDetailsHandler(input) {
     let imagesParsed = JSON.parse(input.updateObject.existingImages)
+    let videoParsed = JSON.parse(input.updateObject.existingVideos)
     const data = {
         ...input.updateObject,
         features: JSON.parse(input.updateObject.features),
@@ -33,16 +47,27 @@ export async function updatePropertyDetailsHandler(input) {
     }
 
     let images = []
+    let videos = []
     if (data.images) {
         images = await Promise.all(
             data.images.map(async (image) => {
-                const result = await uploadOnCloudinary(image.path);
+                const result = await uploadOnCloudinary(image.buffer);
+                return result.secure_url;
+            })
+        );
+    }
+    
+    if (data.videos) {
+        videos = await Promise.all(
+            data.videos.map(async (video) => {
+                const result = await uploadOnCloudinary(video.buffer);
                 return result.secure_url;
             })
         );
     }
 
     data.images = [...images, ...imagesParsed]
+    data.videos = [...videos, ...videoParsed]
 
     return await propertyHelper.directUpdateObject(input.objectId, data);
 }
