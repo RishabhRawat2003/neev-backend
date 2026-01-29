@@ -12,3 +12,9 @@ export const PENDING = "pending";
 export const CONTACTED = "contacted";
 export const CONVERTED = "converted";
 export const CLOSED = "closed";
+
+
+export const EXPORTS = 'Exports';
+export const MARKETING = 'Marketing';
+export const PROPERTY = 'Property';
+export const TRADING = 'Trading';
