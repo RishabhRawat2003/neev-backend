@@ -115,14 +115,14 @@ connectDB().then(() => {
       process.exit(1);
     }
     console.log(`Core API is running on port: ${serverConfig.PORT}`);
-    // setInterval(async () => {
-    //   try {
-    //     const response = await axios.get('https://nexmentorbackend.onrender.com/health')
-    //     console.log(response.data)
-    //   } catch (error) {
-    //     console.error('Health check failed:', error)
-    //   }
-    // }, 10 * 60 * 1000)
+    setInterval(async () => {
+      try {
+        const response = await axios.get('https://neev-backend.onrender.com/health')
+        console.log(response.data)
+      } catch (error) {
+        console.error('Health check failed:', error)
+      }
+    }, 10 * 60 * 1000)
   });
 }).catch((error) => {
   console.error('Startup failed:', error);
