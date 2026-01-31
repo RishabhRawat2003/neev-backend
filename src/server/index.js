@@ -15,6 +15,7 @@ import marketingRoutes from "../server/routes/marketing.routes";
 import marketingLeadRoutes from "../server/routes/marketingLead.routes";
 import salesLeadRoutes from '../server/routes/salesLead.routes'
 import leadRoutes from "../server/routes/lead.routes";
+import startupProducts from "../server/routes/startupProducts.routes";
 
 
 const app = new Express();
@@ -99,6 +100,7 @@ app.use("/api/v1/marketing", marketingRoutes)
 app.use("/api/v1/marketingLead", marketingLeadRoutes)
 app.use("/api/v1/salesLead", salesLeadRoutes)
 app.use("/api/v1/lead", leadRoutes)
+app.use("/api/v1/startupProducts", startupProducts)
 
 
 // Start server ONLY after database connection is established

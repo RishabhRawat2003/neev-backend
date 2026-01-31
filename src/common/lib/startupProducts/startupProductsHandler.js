@@ -1,8 +1,7 @@
 import { uploadOnCloudinary } from '../../../util/cloudinary';
-import propertyHelper from '../../helpers/property.helper';
+import startupProductsHelper from '../../helpers/startupProducts.helper';
 
-export async function addNewPropertyHandler(input) {
-    // Upload all images & wait
+export async function addNewStartupProductsHandler(input) {
     let images = []
     let videos = []
     if (input.images.length > 0) {
@@ -26,24 +25,24 @@ export async function addNewPropertyHandler(input) {
         ...input,
         images,
         videos,
-        features: JSON.parse(input.features),
-        nearbyFacilities: JSON.parse(input.nearbyFacilities)
+        key_features: JSON.parse(input.key_features),
+        manufacturer_details: JSON.parse(input.manufacturer_details)
     };
-
-    return await propertyHelper.addObject(data);
+    return await startupProductsHelper.addObject(data);
 }
 
-export async function getPropertyDetailsHandler(input) {
-    return await propertyHelper.getObjectById(input);
+export async function getStartupProductsDetailsHandler(input) {
+    return await startupProductsHelper.getObjectById(input);
 }
 
-export async function updatePropertyDetailsHandler(input) { 
+export async function updateStartupProductsDetailsHandler(input) {
     let imagesParsed = JSON.parse(input.updateObject.existingImages)
     let videoParsed = JSON.parse(input.updateObject.existingVideos)
+
     const data = {
         ...input.updateObject,
-        features: JSON.parse(input.updateObject.features),
-        nearbyFacilities: JSON.parse(input.updateObject.nearbyFacilities),
+        key_features: JSON.parse(input.updateObject.key_features),
+        manufacturer_details: JSON.parse(input.updateObject.manufacturer_details),
     }
 
     let images = []
@@ -56,7 +55,7 @@ export async function updatePropertyDetailsHandler(input) {
             })
         );
     }
-    
+
     if (data.videos) {
         videos = await Promise.all(
             data.videos.map(async (video) => {
@@ -69,19 +68,19 @@ export async function updatePropertyDetailsHandler(input) {
     data.images = [...images, ...imagesParsed]
     data.videos = [...videos, ...videoParsed]
 
-    return await propertyHelper.directUpdateObject(input.objectId, data);
+    return await startupProductsHelper.directUpdateObject(input.objectId, data);
 }
 
-export async function getPropertyListHandler(input) {
-    const list = await propertyHelper.getAllObjects(input);
-    const count = await propertyHelper.getAllObjectCount(input);
+export async function getStartupProductsListHandler(input) {
+    const list = await startupProductsHelper.getAllObjects(input);
+    const count = await startupProductsHelper.getAllObjectCount(input);
     return { list, count };
 }
 
-export async function deletePropertyHandler(input) {
-    return await propertyHelper.deleteObjectById(input);
+export async function deleteStartupProductsHandler(input) {
+    return await startupProductsHelper.deleteObjectById(input);
 }
 
-export async function getPropertyByQueryHandler(input) {
-    return await propertyHelper.getObjectByQuery(input);
+export async function getStartupProductsByQueryHandler(input) {
+    return await startupProductsHelper.getObjectByQuery(input);
 }  
