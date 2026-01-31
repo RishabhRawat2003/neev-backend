@@ -16,6 +16,7 @@ import marketingLeadRoutes from "../server/routes/marketingLead.routes";
 import salesLeadRoutes from '../server/routes/salesLead.routes'
 import leadRoutes from "../server/routes/lead.routes";
 import startupProducts from "../server/routes/startupProducts.routes";
+import axios from "axios";
 
 
 const app = new Express();
@@ -92,6 +93,9 @@ app.use((req, res, next) => {
 });
 
 app.use("/", mainRoutes);
+app.get('/health', (req, res) => {
+  res.status(200).send('OK'); // Health check endpoint
+});
 app.use("/api/v1/user", userRoutes)
 app.use("/api/v1/otp", otpRoutes)
 app.use("/api/v1/admin", adminRoutes)
@@ -111,6 +115,14 @@ connectDB().then(() => {
       process.exit(1);
     }
     console.log(`Core API is running on port: ${serverConfig.PORT}`);
+    // setInterval(async () => {
+    //   try {
+    //     const response = await axios.get('https://nexmentorbackend.onrender.com/health')
+    //     console.log(response.data)
+    //   } catch (error) {
+    //     console.error('Health check failed:', error)
+    //   }
+    // }, 10 * 60 * 1000)
   });
 }).catch((error) => {
   console.error('Startup failed:', error);
