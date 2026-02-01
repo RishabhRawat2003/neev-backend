@@ -17,6 +17,8 @@ import salesLeadRoutes from '../server/routes/salesLead.routes'
 import leadRoutes from "../server/routes/lead.routes";
 import startupProducts from "../server/routes/startupProducts.routes";
 import startupProductsLead from "../server/routes/startupProductsLead.routes";
+import commercialVehicles from "../server/routes/commercialVehicles.routes";
+
 import axios from "axios";
 
 
@@ -107,6 +109,7 @@ app.use("/api/v1/salesLead", salesLeadRoutes)
 app.use("/api/v1/lead", leadRoutes)
 app.use("/api/v1/startupProducts", startupProducts)
 app.use("/api/v1/startupProductsLead", startupProductsLead)
+app.use("/api/v1/commercialVehicle", commercialVehicles)
 
 
 // Start server ONLY after database connection is established

@@ -3,7 +3,7 @@ import mongoose from 'mongoose';
 const Schema = mongoose.Schema;
 
 const commercialVehiclesSchema = new Schema({
-     name: {
+    name: {
         type: String,
         required: true,
         trim: true
@@ -37,8 +37,12 @@ const commercialVehiclesSchema = new Schema({
         trim: true
     },
 
-    image: {
+    images: {
         type: [String] // image URLs or paths
+    },
+
+    videos: {
+        type: [String]
     },
 
     transmission: {
@@ -82,10 +86,10 @@ const commercialVehiclesSchema = new Schema({
         min: 0,
         max: 100
     },
-    
+
     is_deleted: {
         type: Boolean,
-        default: false 
+        default: false
     },
     created_at: {
         type: Date,
