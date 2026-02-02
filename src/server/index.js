@@ -19,6 +19,8 @@ import startupProducts from "../server/routes/startupProducts.routes";
 import startupProductsLead from "../server/routes/startupProductsLead.routes";
 import commercialVehicles from "../server/routes/commercialVehicles.routes";
 import commercialVehicleLead from '../server/routes/commercialVehicleLead.routes'
+import preownedVehicles from "../server/routes/preownedVehicles.routes";
+import preownedVehicleLead from "./routes/preownedVehiclesLead.routes";
 
 import axios from "axios";
 
@@ -112,6 +114,8 @@ app.use("/api/v1/startupProducts", startupProducts)
 app.use("/api/v1/startupProductsLead", startupProductsLead)
 app.use("/api/v1/commercialVehicle", commercialVehicles)
 app.use("/api/v1/commercialVehicleLead", commercialVehicleLead)
+app.use("/api/v1/preownedVehicle", preownedVehicles)
+app.use("/api/v1/preownedVehicleLead", preownedVehicleLead)
 
 
 // Start server ONLY after database connection is established
