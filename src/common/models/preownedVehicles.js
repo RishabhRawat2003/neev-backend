@@ -77,6 +77,10 @@ const preownedVehiclesSchema = new Schema({
         type: Date
     },
 
+    link: {
+        type: String
+    },
+
     is_deleted: {
         type: Boolean,
         default: false

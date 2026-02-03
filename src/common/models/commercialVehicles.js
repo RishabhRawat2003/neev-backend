@@ -87,6 +87,10 @@ const commercialVehiclesSchema = new Schema({
         max: 100
     },
 
+    link: {
+        type: String
+    },
+
     is_deleted: {
         type: Boolean,
         default: false
