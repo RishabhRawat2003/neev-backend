@@ -68,6 +68,10 @@ const preownedVehiclesSchema = new Schema({
         trim: true
     },
 
+    description: {
+        type: String
+    },
+
     rto_passing_location: {
         type: String,
         trim: true

@@ -73,6 +73,20 @@ const commercialVehiclesSchema = new Schema({
         type: Date
     },
 
+    brand: {
+        type: String,
+        trim: true
+    },
+
+    model: {
+        type: String,
+        trim: true
+    },
+
+    description:{
+        type: String
+    },
+
     passing_in_ton: {
         type: Number
     },

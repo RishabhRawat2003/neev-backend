@@ -100,6 +100,11 @@ const propertySchema = new Schema({
         default: [],
     },
 
+    email: {
+        type: String,
+        trim: true
+    },
+
     is_deleted: {
         type: Boolean,
         default: false
