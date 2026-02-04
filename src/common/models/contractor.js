@@ -43,6 +43,11 @@ const contractorSchema = new Schema({
         type: String
     },
 
+    rank: {
+        type: Number,
+        min: 0
+    },
+
     email: {
         type: String
     },
