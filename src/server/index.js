@@ -22,6 +22,10 @@ import commercialVehicleLead from '../server/routes/commercialVehicleLead.routes
 import preownedVehicles from "../server/routes/preownedVehicles.routes";
 import preownedVehicleLead from "./routes/preownedVehiclesLead.routes";
 import contractor from "./routes/contractor.routes"
+import commercialVehicleDealer from "./routes/commercialVehicleDealer.routes"
+import commercialVehicleDealerLead from "./routes/commercialVehicleDealerLead.routes"
+import preownedVehicleDealer from "./routes/preownedVehicleDealer.routes"
+import preownedVehicleDealerLead from "./routes/preownedVehicleDealerLead.routes"
 
 import axios from "axios";
 
@@ -118,6 +122,10 @@ app.use("/api/v1/commercialVehicleLead", commercialVehicleLead)
 app.use("/api/v1/preownedVehicle", preownedVehicles)
 app.use("/api/v1/preownedVehicleLead", preownedVehicleLead)
 app.use("/api/v1/contractor", contractor)
+app.use("/api/v1/commercialVehicleDealer", commercialVehicleDealer)
+app.use("/api/v1/commercialVehicleDealerLead", commercialVehicleDealerLead)
+app.use("/api/v1/preownedVehicleDealer", preownedVehicleDealer)
+app.use("/api/v1/preownedVehicleDealerLead", preownedVehicleDealerLead)
 
 
 // Start server ONLY after database connection is established
