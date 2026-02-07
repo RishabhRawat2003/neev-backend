@@ -1,12 +1,12 @@
 
 import mongoose from 'mongoose';
-import { CLOSED, CONTACTED, CONVERTED, EXPORTS, MARKETING, PENDING, PROPERTY, TRADING } from '../constants/enum';
+import { CLOSED, COMMERCIALVEHICLE, CONTACTED, CONVERTED, EXPORTS, MARKETING, PENDING, PREOWNEDVEHICLE, PROPERTY, TRADING } from '../constants/enum';
 const Schema = mongoose.Schema;
 
 const leadSchema = new Schema({
     leadType: {
         type: String,
-        enum: [MARKETING, PROPERTY, TRADING, EXPORTS],
+        enum: [MARKETING, PROPERTY, TRADING, EXPORTS, COMMERCIALVEHICLE, PREOWNEDVEHICLE],
         required: true,
     },
 
@@ -42,6 +42,9 @@ const leadSchema = new Schema({
     // Exports
     exportCompanyName: String,
     exportProductCategory: String,
+
+    // vehicle
+    vehicleContactPerson: String,
 
     status: {
         type: String,
