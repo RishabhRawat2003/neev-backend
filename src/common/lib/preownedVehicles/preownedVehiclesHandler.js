@@ -1,7 +1,7 @@
 import { uploadOnCloudinary } from '../../../util/cloudinary';
 import preownedVehiclesHelper from '../../helpers/preownedVehicles.helper';
 
-export async function addNewPreownedVehiclesHandler(input) {
+export async function addNewPreownedVehiclesHandler(input) { 
     let images = []
     let videos = []
     if (input.images.length > 0) {

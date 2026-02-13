@@ -31,6 +31,29 @@ const marketingSchema = new Schema({
         trim: true,
     },
 
+    images: {
+        type: [String],
+        default: [],
+    },
+
+    videos: {
+        type: [String],
+        default: [],
+    },
+
+    testimonials: [
+        {
+            name: {
+                type: String,
+                trim: true,
+            },
+            feedback: {
+                type: String,
+                trim: true,
+            },
+        }
+    ],
+
     usersAssociated: [
         {
             type: mongoose.Schema.Types.ObjectId,
