@@ -56,7 +56,7 @@ router.route('/list').post(async (req, res) => {
 });
 
 
-router.route('/new').post(protectRoutes.verifyAdmin, upload.fields([{ name: 'images', maxCount: 6 }]), async (req, res) => {
+router.route('/new').post(protectRoutes.verifyAdmin, upload.fields([{ name: 'images', maxCount: 10 }]), async (req, res) => {
     try {
         if (!_.isEmpty(req.body)) {
             let data = {
@@ -120,7 +120,7 @@ router.route('/:id').get(async (req, res) => {
     }
 });
 
-router.route('/:id/update').post(protectRoutes.verifyAdmin, upload.fields([{ name: 'images', maxCount: 6 }]), async (req, res) => {
+router.route('/:id/update').post(protectRoutes.verifyAdmin, upload.fields([{ name: 'images', maxCount: 10 }]), async (req, res) => {
     try {
         if (!_.isEmpty(req.params.id) && !_.isEmpty(req.body)) {
 
