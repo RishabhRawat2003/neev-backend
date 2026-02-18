@@ -66,7 +66,7 @@ router.route('/new').post(protectRoutes.verifyAdmin, upload.fields([{ name: 'ima
                 let images = []
                 let video = []
                 req.files.images.map((image) => {
-                    if (image.mimetype === 'image/jpeg' || image.mimetype === 'image/png' || image.mimetype === 'image/jpg') {
+                    if (image.mimetype === 'image/jpeg' || image.mimetype === 'image/png' || image.mimetype === 'image/jpg' || image.mimetype === 'image/gif' || image.mimetype === 'image/webp') {
                         images.push(image)
                     } else {
                         video.push(image)
@@ -132,7 +132,7 @@ router.route('/:id/update').post(protectRoutes.verifyAdmin, upload.fields([{ nam
                 let images = []
                 let video = []
                 req.files.images.map((image) => {
-                    if (image.mimetype === 'image/jpeg' || image.mimetype === 'image/png' || image.mimetype === 'image/jpg') {
+                    if (image.mimetype === 'image/jpeg' || image.mimetype === 'image/png' || image.mimetype === 'image/jpg' || image.mimetype === 'image/gif' || image.mimetype === 'image/webp') {
                         images.push(image)
                     } else {
                         video.push(image)
