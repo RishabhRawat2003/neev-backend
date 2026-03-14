@@ -20,3 +20,4 @@ export const PROPERTY = 'Property';
 export const TRADING = 'Trading';
 export const COMMERCIALVEHICLE = 'CommercialVehicle';
 export const PREOWNEDVEHICLE = 'PreownedVehicle'
+

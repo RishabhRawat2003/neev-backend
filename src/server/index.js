@@ -26,6 +26,7 @@ import commercialVehicleDealer from "./routes/commercialVehicleDealer.routes"
 import commercialVehicleDealerLead from "./routes/commercialVehicleDealerLead.routes"
 import preownedVehicleDealer from "./routes/preownedVehicleDealer.routes"
 import preownedVehicleDealerLead from "./routes/preownedVehicleDealerLead.routes"
+import blogRoutes from "../server/routes/blog.routes";
 
 import axios from "axios";
 
@@ -126,6 +127,7 @@ app.use("/api/v1/commercialVehicleDealer", commercialVehicleDealer)
 app.use("/api/v1/commercialVehicleDealerLead", commercialVehicleDealerLead)
 app.use("/api/v1/preownedVehicleDealer", preownedVehicleDealer)
 app.use("/api/v1/preownedVehicleDealerLead", preownedVehicleDealerLead)
+app.use("/api/v1/blog", blogRoutes)
 
 
 // Start server ONLY after database connection is established
@@ -136,14 +138,14 @@ connectDB().then(() => {
       process.exit(1);
     }
     console.log(`Core API is running on port: ${serverConfig.PORT}`);
-    setInterval(async () => {
-      try {
-        const response = await axios.get('https://neev-backend.onrender.com/health')
-        console.log(response.data)
-      } catch (error) {
-        console.error('Health check failed:', error)
-      }
-    }, 10 * 60 * 1000)
+    // setInterval(async () => {
+    //   try {
+    //     const response = await axios.get('https://neev-backend.onrender.com/health')
+    //     console.log(response.data)
+    //   } catch (error) {
+    //     console.error('Health check failed:', error)
+    //   }
+    // }, 10 * 60 * 1000)
   });
 }).catch((error) => {
   console.error('Startup failed:', error);
