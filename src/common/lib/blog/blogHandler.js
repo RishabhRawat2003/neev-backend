@@ -39,10 +39,9 @@ export async function getBlogDetailsHandler(input) {
 export async function updateBlogDetailsHandler(input) {
     let imagesParsed = JSON.parse(input.updateObject.existingImages)
     let videoParsed = JSON.parse(input.updateObject.existingVideos)
-
     const data = {
         ...input.updateObject,
-        slug: generateSlug(input.title),
+        slug: generateSlug(input.updateObject.title),
         keywords: JSON.parse(input.updateObject.keywords)
     }
 
