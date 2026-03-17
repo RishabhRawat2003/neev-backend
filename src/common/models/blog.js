@@ -8,6 +8,9 @@ const blogSchema = new Schema({
         type: String,
         required: true
     },
+    slug: {
+        type: String
+    },
     description: {
         type: String,
         required: true

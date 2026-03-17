@@ -1,5 +1,6 @@
 import blogHelper from '../../helpers/blog.helper';
 import { uploadOnCloudinary } from '../../../util/cloudinary';
+import { generateSlug } from '../../util/utilHelper';
 
 export async function addNewBlogHandler(input) {
     let images = []
@@ -23,6 +24,7 @@ export async function addNewBlogHandler(input) {
 
     const data = {
         ...input,
+        slug: generateSlug(input.title),
         images,
         videos,
         keywords: JSON.parse(input.keywords)
@@ -40,6 +42,7 @@ export async function updateBlogDetailsHandler(input) {
 
     const data = {
         ...input.updateObject,
+        slug: generateSlug(input.title),
         keywords: JSON.parse(input.updateObject.keywords)
     }
 

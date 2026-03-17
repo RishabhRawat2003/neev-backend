@@ -276,3 +276,13 @@ export async function sendVerificationEmail(email, subject) {
     return { success: false, message: e.message };
   }
 }
+
+
+export function generateSlug(name) {
+  return name
+    .toLowerCase()                 // convert to lowercase
+    .trim()                        // remove extra spaces
+    .replace(/[^\w\s-]/g, "")      // remove special characters
+    .replace(/\s+/g, "-")          // replace spaces with -
+    .replace(/-+/g, "-");          // remove multiple -
+}
