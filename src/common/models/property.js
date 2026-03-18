@@ -9,7 +9,9 @@ const propertySchema = new Schema({
         required: true,
         trim: true,
     },
-
+    slug: {
+        type: String
+    },
     type: {
         type: String, // e.g. Apartment, Villa, Plot
         required: true,

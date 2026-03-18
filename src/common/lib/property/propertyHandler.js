@@ -1,5 +1,7 @@
 import { uploadOnCloudinary } from '../../../util/cloudinary';
 import propertyHelper from '../../helpers/property.helper';
+import { generateSlug } from '../../util/utilHelper';
+
 
 export async function addNewPropertyHandler(input) {
     // Upload all images & wait
@@ -22,8 +24,9 @@ export async function addNewPropertyHandler(input) {
         );
     }
 
-    const data = {
+    const data = { 
         ...input,
+        slug: generateSlug(input.name),
         images,
         videos,
         features: JSON.parse(input.features),
@@ -42,6 +45,7 @@ export async function updatePropertyDetailsHandler(input) {
     let videoParsed = JSON.parse(input.updateObject.existingVideos)
     const data = {
         ...input.updateObject,
+        slug: generateSlug(input.updateObject.name),
         features: JSON.parse(input.updateObject.features),
         nearbyFacilities: JSON.parse(input.updateObject.nearbyFacilities),
     }
