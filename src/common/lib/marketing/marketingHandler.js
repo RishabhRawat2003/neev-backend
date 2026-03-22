@@ -1,5 +1,6 @@
 import marketingHelper from '../../helpers/marketing.helper';
 import { uploadOnCloudinary } from '../../../util/cloudinary';
+import { generateSlug } from '../../util/utilHelper';
 
 export async function addNewMarketingHandler(input) {
     let images = []
@@ -23,6 +24,7 @@ export async function addNewMarketingHandler(input) {
 
     const data = {
         ...input,
+        slug: generateSlug(input.name),
         images,
         videos,
         testimonials: JSON.parse(input.testimonials),
@@ -43,6 +45,7 @@ export async function updateMarketingDetailsHandler(input) {
 
     const data = {
         ...input.updateObject,
+        slug: generateSlug(input.updateObject.name),
         testimonials: JSON.parse(input.updateObject.testimonials),
         features: JSON.parse(input.updateObject.features),
         usersAssociated: JSON.parse(input.updateObject.usersAssociated)

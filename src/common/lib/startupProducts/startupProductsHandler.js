@@ -1,5 +1,6 @@
 import { uploadOnCloudinary } from '../../../util/cloudinary';
 import startupProductsHelper from '../../helpers/startupProducts.helper';
+import { generateSlug } from '../../util/utilHelper';
 
 export async function addNewStartupProductsHandler(input) {
     let images = []
@@ -23,6 +24,7 @@ export async function addNewStartupProductsHandler(input) {
 
     const data = {
         ...input,
+        slug: generateSlug(input.name),
         images,
         videos,
         key_features: JSON.parse(input.key_features),
@@ -41,6 +43,7 @@ export async function updateStartupProductsDetailsHandler(input) {
 
     const data = {
         ...input.updateObject,
+        slug: generateSlug(input.updateObject.name),
         key_features: JSON.parse(input.updateObject.key_features),
         manufacturer_details: JSON.parse(input.updateObject.manufacturer_details),
     }

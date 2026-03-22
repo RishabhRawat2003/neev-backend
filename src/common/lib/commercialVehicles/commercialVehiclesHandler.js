@@ -1,5 +1,6 @@
 import { uploadOnCloudinary } from '../../../util/cloudinary';
 import commercialVehiclesHelper from '../../helpers/commercialVehicles.helper';
+import { generateSlug } from '../../util/utilHelper';
 
 export async function addNewCommercialVehiclesHandler(input) {
     let images = []
@@ -23,6 +24,7 @@ export async function addNewCommercialVehiclesHandler(input) {
 
     const data = {
         ...input,
+        slug: generateSlug(input.name),
         images,
         videos
     };
@@ -38,7 +40,8 @@ export async function updateCommercialVehiclesDetailsHandler(input) {
     let videoParsed = JSON.parse(input.updateObject.existingVideos)
 
     const data = {
-        ...input.updateObject
+        ...input.updateObject,
+        slug: generateSlug(input.updateObject.name),
     }
 
     let images = []

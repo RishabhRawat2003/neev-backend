@@ -3,7 +3,7 @@ import propertyHelper from '../../helpers/property.helper';
 import { generateSlug } from '../../util/utilHelper';
 
 
-export async function addNewPropertyHandler(input) {
+export async function addNewPropertyHandler(input) { 
     // Upload all images & wait
     let images = []
     let videos = []

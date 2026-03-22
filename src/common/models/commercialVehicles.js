@@ -9,6 +9,10 @@ const commercialVehiclesSchema = new Schema({
         trim: true
     },
 
+    slug: {
+        type: String
+    },
+
     type: {
         type: String, // e.g. Truck, Bus, Tempo
         trim: true

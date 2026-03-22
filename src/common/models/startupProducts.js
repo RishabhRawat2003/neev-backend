@@ -9,6 +9,10 @@ const startupProductsSchema = new Schema({
         trim: true
     },
 
+    slug: {
+        type: String
+    },
+
     category: {
         type: String,
         required: true,

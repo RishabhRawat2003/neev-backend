@@ -9,6 +9,10 @@ const preownedVehiclesSchema = new Schema({
         trim: true
     },
 
+    slug: {
+        type: String
+    },
+
     year: {
         type: Number
     },

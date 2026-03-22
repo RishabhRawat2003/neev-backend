@@ -9,6 +9,10 @@ const marketingSchema = new Schema({
         trim: true,
     },
 
+    slug: {
+        type: String
+    },
+
     type: {
         type: String,
         enum: ["product", "service", "company"],
