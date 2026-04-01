@@ -79,12 +79,15 @@ export async function sendVerificationEmail(email, subject) {
     // Send Email
     const transporter = nodemailer.createTransport({
       service: "gmail",
+      pool: true,
+      maxConnections: 5,
+      maxMessages: 100,
       auth: {
         user: configVariables.EMAIL_USER,
         pass: configVariables.EMAIL_PASS,
       },
     });
-    
+
     const htmlMessage = `
     <!DOCTYPE html>
     <html lang="en">

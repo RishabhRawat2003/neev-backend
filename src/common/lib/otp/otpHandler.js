@@ -18,9 +18,9 @@ export async function sendEmailHandler(email) {
     if (user) {
         throw "Email already exists"
     }
-
+    console.time("sendMail");
     await sendVerificationEmail(email, "Email Verification");
-
+    console.timeEnd("sendMail");
 }
 
 export async function verifyEmailOTP(email, otp) {
