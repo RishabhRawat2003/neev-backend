@@ -4,14 +4,13 @@ import nodemailer from "nodemailer";
 import configVariables from "../../server/config";
 import otpHelper from "../helpers/otp.helper";
 
-const transporter = nodemailer.createTransport({
-  service: "gmail",
-  pool: true,
-  maxConnections: 5,
-  maxMessages: 100,
+export const transporter = nodemailer.createTransport({
+  host: "smtpout.secureserver.net", // GoDaddy SMTP
+  port: 465,
+  secure: true, // true for 465
   auth: {
-    user: configVariables.EMAIL_USER,
-    pass: configVariables.EMAIL_PASS,
+    user: process.env.EMAIL_USER, // your GoDaddy email
+    pass: process.env.EMAIL_PASS, // your GoDaddy password
   },
 });
 
