@@ -6,8 +6,8 @@ import otpHelper from "../helpers/otp.helper";
 
 export const transporter = nodemailer.createTransport({
   host: "smtpout.secureserver.net", // GoDaddy SMTP
-  port: 465,
-  secure: true, // true for 465
+  port: 587,
+  secure: false,
   auth: {
     user: process.env.EMAIL_USER, // your GoDaddy email
     pass: process.env.EMAIL_PASS, // your GoDaddy password
