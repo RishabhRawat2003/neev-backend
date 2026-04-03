@@ -47,6 +47,7 @@
         "node-cron": "^3.0.3",
         "nodemailer": "^6.7.2",
         "replaceall": "^0.1.6",
+        "resend": "^6.10.0",
         "throng": "^4.0.0",
         "uuid": "^11.0.5",
         "validator": "^13.7.0"
